@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Complementariedad Proteica de Origen Vegetal</title>
+<style>
+:root{--bg:#f4f7f3;--card:#fff;--tx:#1f2a24;--mu:#5b6a61;--ln:#d5ddd6;--ok:#2f7d5b;--lo:#d9962b;--okbg:#e2f1ea;--lobg:#faedd2}
+@media(prefers-color-scheme:dark){:root{--bg:#141a16;--card:#1e2721;--tx:#e8eee9;--mu:#9fb0a5;--ln:#33423a;--ok:#4fbf8d;--lo:#e8ad4a;--okbg:#1d3a2d;--lobg:#40331a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:560px;margin:0 auto;padding:20px 16px 48px}
+h1{font:700 28px/1.2 Georgia,"Times New Roman",serif;margin:8px 0 8px}
+h2{font:700 20px/1.3 Georgia,"Times New Roman",serif;margin:0 0 4px}
+h3{font:700 17px/1.3 Georgia,"Times New Roman",serif;margin:22px 0 4px;padding-top:16px;border-top:1px solid var(--ln)}
+p{margin:0 0 12px}
+.lead{color:var(--mu)}
+section{background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:18px 16px;margin:20px 0}
+.note{font-size:13px;color:var(--mu)}
+.sw{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+button{font:inherit;min-height:44px;padding:8px 14px;border-radius:10px;border:1px solid var(--ln);background:var(--card);color:var(--tx);cursor:pointer}
+button:active{transform:scale(.98)}
+button.on{border-color:var(--ok);background:var(--okbg);font-weight:600}
+:focus-visible{outline:3px solid var(--ok);outline-offset:2px}
+.row{display:grid;grid-template-columns:96px 1fr 96px;align-items:center;gap:10px;margin:6px 0}
+.row output{text-align:right;font-weight:600}
+input[type=range]{width:100%;height:36px;accent-color:var(--ok)}
+input[type=number]{font:inherit;width:90px;min-height:44px;padding:6px 10px;border:1px solid var(--ln);border-radius:10px;background:var(--card);color:var(--tx)}
+.bl{display:flex;justify-content:space-between;font-size:14px;margin:12px 0 4px}
+.bar{position:relative;height:24px;background:var(--bg);border-radius:8px;overflow:hidden}
+.fl{height:100%;transition:width .15s}
+.ref{position:absolute;top:0;bottom:0;left:66.667%;border-left:2px dashed var(--mu)}
+.v{padding:10px 12px;border-radius:10px;font-weight:600;margin:14px 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stats div{background:var(--bg);border-radius:10px;padding:8px 10px}
+.stats small{display:block;color:var(--mu);font-size:12px}
+.stats b{font-size:20px}
+.pz{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 12px}
+.pc{border-radius:12px;padding:14px 10px;text-align:center;border:2px solid var(--ok);background:var(--okbg);min-height:104px;display:flex;flex-direction:column;justify-content:center}
+.pc.no{border:2px dashed var(--lo);background:var(--lobg)}
+.pc b{display:block;font-size:16px}
+.pc span{font-size:13px}
+ul.ing{padding-left:20px;margin:10px 0}
+ol{padding-left:22px}
+li{margin:0 0 8px}
+</style>
+</head>
+<body>
+<main>
+<h1>Complementariedad Proteica de Origen Vegetal</h1>
+<p class="lead">Juntos se complementan en aminoácidos esenciales. Pruébalo tú mismo con los widgets de esta página.</p>
+
+<section id="s1">
+<h2>1. Arma tu plato</h2>
+<p class="note">Mueve las porciones y mira cómo cambian los aminoácidos en tiempo real.</p>
+<div class="sw" role="group" aria-label="Platos de ejemplo">
+<button data-p="1.25,0,0">Solo arroz</button>
+<button data-p="0,1.25,0">Solo porotos</button>
+<button data-p="0.5,0.5,0">Arroz y porotos</button>
+<button data-p="0,0,100">Carne</button>
+</div>
+<div class="row"><label for="r">Arroz</label><input type="range" id="r" min="0" max="2" step="0.25" value="1.25"><output id="ro"></output></div>
+<div class="row"><label for="b">Porotos</label><input type="range" id="b" min="0" max="2" step="0.25" value="0"><output id="bo"></output></div>
+<div class="row"><label for="m">Carne</label><input type="range" id="m" min="0" max="300" step="10" value="0"><output id="mo"></output></div>
+<p class="note" style="margin:4px 0 0">Tazas de alimento cocido: 1 taza de arroz pesa unos 158 g y 1 taza de porotos unos 172 g.</p>
+<div class="bl"><span>Lisina</span><b id="lt"></b></div>
+<div class="bar"><div class="fl" id="lf"></div><div class="ref"></div></div>
+<div class="bl"><span>Metionina y cisteína</span><b id="st"></b></div>
+<div class="bar"><div class="fl" id="sf"></div><div class="ref"></div></div>
+<p class="note" style="margin-top:6px">La línea punteada es el 100% de lo que se necesita por cada gramo de proteína (referencia FAO para adultos: lisina 45 y metionina más cisteína 22 mg por gramo de proteína).</p>
+<div class="v" id="vd" role="status"></div>
+<div class="stats">
+<div><small>Proteína</small><b id="pp"></b></div>
+<div><small>Fibra</small><b id="ff"></b></div>
+<div><small>Colesterol</small><b id="cc"></b></div>
+</div>
+
+<h3>Platos tradicionales chilenos</h3>
+<p class="note">Elige un plato y cambia las cantidades de cada ingrediente (crudo o fresco, por porción).</p>
+<div class="sw" role="group" aria-label="Platos chilenos">
+<button data-d="riendas" class="on">Porotos con riendas</button>
+<button data-d="lentejas">Lentejas con arroz</button>
+<button data-d="granados">Porotos granados</button>
+</div>
+<div id="dsl"></div>
+<div class="bl"><span>Lisina</span><b id="dlt"></b></div>
+<div class="bar"><div class="fl" id="dlf"></div><div class="ref"></div></div>
+<div class="bl"><span>Metionina y cisteína</span><b id="dst"></b></div>
+<div class="bar"><div class="fl" id="dsf"></div><div class="ref"></div></div>
+<p class="note" style="margin-top:6px">La línea punteada es el 100% de lo que se necesita por cada gramo de proteína (referencia FAO para adultos).</p>
+<div class="v" id="dv" role="status"></div>
+<div class="stats"><div><small>Proteína del plato</small><b id="dp"></b></div></div>
+</section>
+
+<section id="s2">
+<h2>2. Receta para llevar</h2>
+<p class="note">Elige un plato y cuántas porciones quieres preparar.</p>
+
+<div class="sw" role="group" aria-label="Elegir receta">
+<button data-c="riendas" class="on">Porotos con riendas</button>
+<button data-c="lentejas">Lentejas con arroz</button>
+<button data-c="granados">Porotos granados</button>
+</div>
+<label for="n">Porciones</label><br>
+<input type="number" id="n" min="1" max="50" value="1" inputmode="numeric">
+<ul class="ing" id="ing"></ul>
+<ol id="stp"></ol>
+<p class="note">Las tazas son de ingrediente crudo o fresco y son aproximadas, igual que los tiempos de cocción: pruébenlos antes de cocinar para varias personas.</p>
+</section>
+
+<p class="note">Platos 1 (arroz, porotos y carne): valores por 100 g de alimento cocido de USDA FoodData Central (arroz blanco de grano largo cocido sin sal, porotos negros cocidos sin sal y carne molida 85% magra a la plancha); referencia de aminoácidos FAO/OMS/UNU (2007) para adultos: lisina 45 y metionina más cisteína 22 mg por gramo de proteína. Platos tradicionales chilenos: proteína y aminoácidos de la tabla de matriz alimentaria del equipo (valores aproximados), con la misma referencia. Hecho para el taller del curso SUS2001.</p>
+</main>
+<script>
+function $(i){return document.getElementById(i)}
+function paint(f,t,s){
+$(t).textContent=Math.round(s*100)+'%';
+$(f).style.width=Math.min(s,1.5)/1.5*100+'%';
+$(f).style.background=s>=1?'var(--ok)':'var(--lo)'
+}
+function verdict(v,sl,ss){
+if(sl>=1&&ss>=1){v.textContent='Proteína completa: ningún aminoácido frena a los demás.';v.style.background='var(--okbg)';v.style.color='var(--ok)'}
+else{var q=[];if(sl<1)q.push('la lisina');if(ss<1)q.push('la metionina y cisteína');
+v.textContent='Proteína incompleta: frena '+q.join(' y ')+'.';v.style.background='var(--lobg)';v.style.color='var(--lo)'}
+}
+/* Bloque 1: arroz, porotos y carne (USDA, por 100 g cocido) */
+var F={r:{p:2.7,l:97,s:118,f:0.4,c:0},b:{p:8.86,l:608,s:229,f:8.7,c:0},m:{p:24.6,l:2037,s:885,f:0,c:84}};
+function calc(r,b,m){
+var k=function(x){return(r*F.r[x]+b*F.b[x]+m*F.m[x])/100};
+var P=k('p');
+return{P:P,F:k('f'),C:k('c'),sl:P?(k('l')/P)/45:0,ss:P?(k('s')/P)/22:0}
+}
+function cup(x){
+var w=Math.floor(x),d=x-w,t=d>=.75?'3/4':d>=.5?'1/2':d>=.25?'1/4':'';
+var s=w&&t?w+' '+t:w?String(w):t||'0';
+return s+(x>1?' tazas':x>0?' taza':' tazas')
+}
+function upd(){
+var rc=+$('r').value,bc=+$('b').value,m=+$('m').value;
+var r=rc*158,b=bc*172;
+$('ro').textContent=cup(rc);$('bo').textContent=cup(bc);$('mo').textContent=m+' g';
+var x=calc(r,b,m),v=$('vd');
+$('pp').textContent=x.P.toFixed(1)+' g';
+$('ff').textContent=x.F.toFixed(1)+' g';
+$('cc').textContent=Math.round(x.C)+' mg';
+if(!x.P){$('lt').textContent='';$('st').textContent='';$('lf').style.width='0';$('sf').style.width='0';
+v.textContent='Elige una porción para empezar.';v.style.background='var(--bg)';v.style.color='var(--tx)';return}
+paint('lf','lt',x.sl);paint('sf','st',x.ss);verdict(v,x.sl,x.ss)
+}
+['r','b','m'].forEach(function(i){$(i).oninput=upd});
+document.querySelectorAll('[data-p]').forEach(function(e){e.onclick=function(){
+var a=e.dataset.p.split(',');$('r').value=a[0];$('b').value=a[1];$('m').value=a[2];upd()}});
+/* Platos chilenos: proteína (%) y mg de aminoácido por g de proteína, según la tabla del equipo */
+var Q={
+poroto:{n:'Poroto común',p:22,l:68,s:19},
+granado:{n:'Poroto granado',p:8.5,l:64,s:18},
+lenteja:{n:'Lenteja chilena',p:24.5,l:71,s:17},
+fideos:{n:'Fideos',p:11,l:26,s:38},
+arroz:{n:'Arroz blanco',p:7.5,l:35,s:37},
+choclo:{n:'Choclo fresco',p:3.75,l:32,s:36}
+};
+var D={
+riendas:{ing:[['poroto',80,200],['fideos',60,200]]},
+lentejas:{ing:[['lenteja',60,200],['arroz',90,200]]},
+granados:{ing:[['granado',200,400],['choclo',250,400]]}
+};
+var cur='riendas';
+function drawD(){
+var h='';
+D[cur].ing.forEach(function(g,i){
+h+='<div class="row"><label for="d'+i+'">'+Q[g[0]].n+'</label><input type="range" id="d'+i+'" min="0" max="'+g[2]+'" step="10" value="'+g[1]+'"><output id="do'+i+'"></output></div>'});
+$('dsl').innerHTML=h;
+D[cur].ing.forEach(function(g,i){$('d'+i).oninput=updD});
+updD()
+}
+function updD(){
+var P=0,L=0,S=0;
+D[cur].ing.forEach(function(g,i){
+var gr=+$('d'+i).value;$('do'+i).textContent=gr+' g';
+var q=Q[g[0]],pr=gr*q.p/100;P+=pr;L+=pr*q.l;S+=pr*q.s});
+var sl=P?(L/P)/45:0,ss=P?(S/P)/22:0;
+$('dp').textContent=P.toFixed(1)+' g';
+if(!P){$('dlt').textContent='';$('dst').textContent='';$('dlf').style.width='0';$('dsf').style.width='0';return}
+paint('dlf','dlt',sl);paint('dsf','dst',ss);verdict($('dv'),sl,ss)
+}
+document.querySelectorAll('[data-d]').forEach(function(e){e.onclick=function(){
+document.querySelectorAll('[data-d]').forEach(function(o){o.classList.remove('on')});
+e.classList.add('on');cur=e.dataset.d;drawD()}});
+/* Recetas para llevar */
+var R={
+riendas:{
+ing:function(n){return[
+cupT(.412*n)+' de porotos secos',
+cupT(.571*n)+' de fideos (riendas)',
+fr(n/4)+' cebolla'+(n>4?'s':'')+' mediana'+(n>4?'s':''),
+n+' diente'+(n>1?'s':'')+' de ajo',
+cupT(.345*n)+' de zapallo en cubos (opcional)',
+n+' cucharadita'+(n>1?'s':'')+' de aceite vegetal',
+n+' cucharadita'+(n>1?'s':'')+' de ají color o pimentón',
+'Comino y sal a gusto']},
+st:['Deja los porotos en remojo en agua fría entre 8 y 12 horas.','Bota el agua del remojo y cuécelos con agua nueva: 25 a 30 minutos en olla a presión o 60 a 90 minutos en olla normal, hasta que estén blandos.','Sofríe la cebolla y el ajo con el aceite, el ají color y el comino.','Agrega el sofrito y el zapallo a los porotos y cocina 10 minutos.','Añade los fideos y cocina de 10 a 12 minutos más, agregando agua caliente si hace falta.','Salpimienta a gusto y sirve caliente.']},
+lentejas:{
+ing:function(n){return[
+cupT(.3125*n)+' de lentejas',
+cupT(.486*n)+' de arroz grano largo (crudo)',
+fr(n/4)+' cebolla'+(n>4?'s':'')+' mediana'+(n>4?'s':''),
+n+' diente'+(n>1?'s':'')+' de ajo',
+fr(n/4)+' zanahoria'+(n>4?'s':''),
+n+' cucharadita'+(n>1?'s':'')+' de aceite vegetal',
+'Comino y sal a gusto',
+cupT(.75*n)+' de agua para el arroz, y agua para cubrir las lentejas']},
+st:['Lava las lentejas. No necesitan remojo.','Sofríe la cebolla, el ajo y la zanahoria picada con el aceite y el comino.','Agrega las lentejas y cúbrelas con agua. Cocina 30 a 40 minutos hasta que estén blandas y sala al final.','Cuece el arroz aparte con el agua indicada y sal, tapado, unos 18 minutos. Déjalo reposar 5 minutos.','Sirve las lentejas junto al arroz.']},
+granados:{
+ing:function(n){return[
+cupT(1.176*n)+' de porotos granados frescos, ya desgranados',
+cupT(1.62*n)+' de granos de choclo',
+fr(n/4)+' cebolla'+(n>4?'s':'')+' mediana'+(n>4?'s':''),
+n+' diente'+(n>1?'s':'')+' de ajo',
+cupT(.345*n)+' de zapallo en cubos',
+n+' cucharadita'+(n>1?'s':'')+' de aceite vegetal',
+n+' cucharadita'+(n>1?'s':'')+' de ají color',
+'Albahaca fresca y sal a gusto']},
+st:['Sofríe la cebolla y el ajo con el aceite y el ají color.','Agrega los porotos granados, el zapallo y agua para cubrir. Cocina unos 30 a 40 minutos.','Muele o raspa el choclo y agrégalo a la olla. Cocina 10 minutos más revolviendo para que no se pegue.','Sala a gusto, agrega la albahaca picada y sirve caliente.']}
+};
+var rc='riendas';
+function cupT(x){
+var e=Math.max(1,Math.round(x*8)),w=Math.floor(e/8),r=e%8;
+var fm={1:'1/8',2:'1/4',3:'3/8',4:'1/2',5:'5/8',6:'3/4',7:'7/8'};
+if(!r)return w+(w>1?' tazas':' taza');
+return w?w+' '+fm[r]+' tazas':fm[r]+' de taza'
+}
+function fr(x){var w=Math.floor(x),d=x-w,t=d>=.75?'3/4':d>=.5?'1/2':d>=.25?'1/4':'';
+if(!t)return String(Math.round(x));return w?w+' y '+t:t}
+function rec(){
+var n=Math.max(1,Math.min(50,Math.round(+$('n').value)||1));
+$('ing').innerHTML=R[rc].ing(n).map(function(t){return'<li>'+t+'</li>'}).join('');
+$('stp').innerHTML=R[rc].st.map(function(t){return'<li>'+t+'</li>'}).join('')
+}
+document.querySelectorAll('[data-c]').forEach(function(e){e.onclick=function(){
+document.querySelectorAll('[data-c]').forEach(function(o){o.classList.remove('on')});
+e.classList.add('on');rc=e.dataset.c;rec()}});
+$('n').oninput=rec;
+upd();drawD();rec();
+</script>
+</body>
+</html>
