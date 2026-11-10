@@ -67,7 +67,7 @@ li{margin:0 0 8px}
 <div class="bar"><div class="fl" id="lf"></div><div class="ref"></div></div>
 <div class="bl"><span>Metionina y cisteína</span><b id="st"></b></div>
 <div class="bar"><div class="fl" id="sf"></div><div class="ref"></div></div>
-<p class="note" style="margin-top:6px">La línea punteada es el 100% de lo que se necesita por cada gramo de proteína (referencia FAO para adultos: lisina 45 y metionina más cisteína 22 mg por gramo de proteína).</p>
+<p class="note" style="margin-top:6px">La línea punteada es el 100% de lo que se necesita por cada gramo de proteína (referencia FAO para niños pequeños: lisina 57 y metionina más cisteína 27 mg por gramo de proteína).</p>
 <div class="v" id="vd" role="status"></div>
 <div class="stats">
 <div><small>Proteína</small><b id="pp"></b></div>
@@ -87,7 +87,7 @@ li{margin:0 0 8px}
 <div class="bar"><div class="fl" id="dlf"></div><div class="ref"></div></div>
 <div class="bl"><span>Metionina y cisteína</span><b id="dst"></b></div>
 <div class="bar"><div class="fl" id="dsf"></div><div class="ref"></div></div>
-<p class="note" style="margin-top:6px">La línea punteada es el 100% de lo que se necesita por cada gramo de proteína (referencia FAO para adultos).</p>
+<p class="note" style="margin-top:6px">La línea punteada es el 100% de lo que se necesita por cada gramo de proteína (referencia FAO para adultos: lisina 45 y metionina más cisteína 22 mg por gramo de proteína).</p>
 <div class="v" id="dv" role="status"></div>
 <div class="stats"><div><small>Proteína del plato</small><b id="dp"></b></div></div>
 </section>
@@ -108,7 +108,7 @@ li{margin:0 0 8px}
 <p class="note">Las tazas son de ingrediente crudo o fresco y son aproximadas, igual que los tiempos de cocción: pruébenlos antes de cocinar para varias personas.</p>
 </section>
 
-<p class="note">Platos 1 (arroz, porotos y carne): valores por 100 g de alimento cocido de USDA FoodData Central (arroz blanco de grano largo cocido sin sal, porotos negros cocidos sin sal y carne molida 85% magra a la plancha); referencia de aminoácidos FAO/OMS/UNU (2007) para adultos: lisina 45 y metionina más cisteína 22 mg por gramo de proteína. Platos tradicionales chilenos: proteína y aminoácidos de la tabla de matriz alimentaria del equipo (valores aproximados), con la misma referencia. Hecho para el taller del curso SUS2001.</p>
+<p class="note">Platos 1 (arroz, porotos y carne): valores por 100 g de alimento cocido de USDA FoodData Central (arroz blanco de grano largo cocido sin sal, porotos negros cocidos sin sal y carne molida 85% magra a la plancha); referencia de aminoácidos FAO/OMS/UNU (2007) y FAO (2013) para niños de 6 meses a 3 años: lisina 57 y metionina más cisteína 27 mg por gramo de proteína. Platos tradicionales chilenos: proteína y aminoácidos de la tabla de matriz alimentaria del equipo (valores aproximados), con referencia FAO para adultos: lisina 45 y metionina más cisteína 22 mg por gramo de proteína. Hecho para el taller del curso SUS2001.</p>
 </main>
 <script>
 function $(i){return document.getElementById(i)}
@@ -127,7 +127,7 @@ var F={r:{p:2.7,l:97,s:118,f:0.4,c:0},b:{p:8.86,l:608,s:229,f:8.7,c:0},m:{p:24.6
 function calc(r,b,m){
 var k=function(x){return(r*F.r[x]+b*F.b[x]+m*F.m[x])/100};
 var P=k('p');
-return{P:P,F:k('f'),C:k('c'),sl:P?(k('l')/P)/45:0,ss:P?(k('s')/P)/22:0}
+return{P:P,F:k('f'),C:k('c'),sl:P?(k('l')/P)/57:0,ss:P?(k('s')/P)/27:0}
 }
 function cup(x){
 var w=Math.floor(x),d=x-w,t=d>=.75?'3/4':d>=.5?'1/2':d>=.25?'1/4':'';
